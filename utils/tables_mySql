@@ -1,0 +1,36 @@
+CREATE TABLE `app_user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `admin` bit(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `partie` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `resultat` bit(1) DEFAULT NULL,
+  `tournoi_id` int DEFAULT NULL,
+  `user1_id` int DEFAULT NULL,
+  `user2_id` int DEFAULT NULL,
+  `date` varchar(255) DEFAULT NULL,
+  `heure` varchar(255) DEFAULT NULL,
+  `vainqueur` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKa780q964bkcx5sy1y0nb5i8c8` (`tournoi_id`),
+  KEY `FKdu1oihkoxndyfoh7e3xlsp4t0` (`user1_id`),
+  KEY `FKo67rmpkcm20yllnoo671i6yc8` (`user2_id`),
+  CONSTRAINT `FKa780q964bkcx5sy1y0nb5i8c8` FOREIGN KEY (`tournoi_id`) REFERENCES `tournoi` (`id`),
+  CONSTRAINT `FKdu1oihkoxndyfoh7e3xlsp4t0` FOREIGN KEY (`user1_id`) REFERENCES `app_user` (`id`),
+  CONSTRAINT `FKo67rmpkcm20yllnoo671i6yc8` FOREIGN KEY (`user2_id`) REFERENCES `app_user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+CREATE TABLE `tournoi` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `date_debut` varchar(255) DEFAULT NULL,
+  `date_fin` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
