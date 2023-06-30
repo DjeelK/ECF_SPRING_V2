@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire Partie</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: header}"></div>
+<main class="form-wrapper">
+    <div class="form-box-partie">
+        <h3>Formulaire Partie</h3>
+        <br>
+        <form action="/partie/add" method="post">
+            <div class="form-group-partie">
+                <label for="tournoiId">ID du tournoi</label>
+                <input type="text" name="tournoiId" id="tournoiId" class="form-control-partie" required>
+            </div>
+            <div class="form-group-partie">
+                <label for="appUser1Id">ID du joueur 1</label>
+                <input type="text" id="appUser1Id" name="appUser1Id" class="form-control-partie" required>
+            </div>
+            <div class="form-group-partie">
+                <label for="appUser2Id">ID du joueur 2</label>
+                <input type="text" name="appUser2Id" id="appUser2Id" class="form-control-partie" required>
+            </div>
+            <div class="form-group-partie">
+                <label for="datePartie">Date de la partie</label>
+                <input type="text" name="datePartie" id="datePartie" class="form-control-partie" required>
+            </div>
+            <div class="form-group-partie">
+                <label for="heurePartie">Heure de la partie</label>
+                <input type="text" name="heurePartie" id="heurePartie" class="form-control-partie" required>
+            </div>
+            <button type="submit" class="btn-partie">Ajouter</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>

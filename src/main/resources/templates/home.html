@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website with login and register</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- script javaScript -->
+  <script src="script.js" defer></script>
+  <!-- script ionicons -->
+  <script
+          type="module"
+          src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+  ></script>
+  <script
+          nomodule
+          src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+  ></script>
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: header}"></div>
+<div class="wrapper">
+  <div class="form-box login">
+    <h2>Login</h2>
+    <form action="/user/signin" method="post">
+      <div class="input-box">
+        <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
+        <input type="email" name="email" required />
+        <label>Email</label>
+      </div>
+      <div class="input-box">
+          <span class="icon"
+          ><ion-icon name="lock-closed-outline"></ion-icon></span
+          >
+        <input type="password" name="password" required />
+        <label>Password</label>
+      </div>
+      <div class="remember-forgot">
+        <label><input type="checkbox"> Remember me</label>
+        <a href="#">Password ?</a>
+      </div>
+      <button type="submit" class="btn">Login</button>
+      <div class="login-register">
+        <p>Don't have an account ?<a href="/user/signup" class="register-link"> Register</a></p>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
