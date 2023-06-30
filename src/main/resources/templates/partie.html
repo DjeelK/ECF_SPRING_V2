@@ -10,31 +10,31 @@
 <body>
 <div th:replace="~{fragments/navbar :: header}"></div>
 <main class="d-flex flex-column col-8 align-items-center">
-    <h2>Les matchs</h2>
+    <h2 class="text-white">Les matchs</h2>
     <hr>
     <div th:text="${message}"></div>
     <div class="container-fluid">
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Tournoi</th>
-                <th scope="col">Joueur 1</th>
-                <th scope="col">Joueur 2</th>
-                <th scope="col">Date</th>
-                <th scope="col">Heure</th>
-                <th scope="col">Résultat</th>
+                <th scope="col" class="text-white">ID</th>
+                <th scope="col" class="text-white">Tournoi</th>
+                <th scope="col" class="text-white">Joueur 1</th>
+                <th scope="col" class="text-white">Joueur 2</th>
+                <th scope="col" class="text-white">Date</th>
+                <th scope="col" class="text-white">Heure</th>
+                <th scope="col" class="text-white">Résultat</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="partie : ${parties}">
-                <td th:text="${partie.getId()}"></td>
-                <td th:text="${partie.getTournoi().getTitle()}"></td>
-                <td th:text="${partie.getUser1().getFirstName()}"></td>
-                <td th:text="${partie.getUser2().getLastName()}"></td>
-                <td th:text="${partie.getDatePartie()}"></td>
-                <td th:text="${partie.getHeurePartie()}"></td>
-                <td th:text="${partie.getResultat()}"></td>
+                <td th:text="${partie.getId()}" class="text-white"></td>
+                <td th:text="${partie.getTournoi().getTitle()}" class="text-white"></td>
+                <td th:text="${partie.getUser1().getFirstName()}" class="text-white"></td>
+                <td th:text="${partie.getUser2().getLastName()}" class="text-white"></td>
+                <td th:text="${partie.getDatePartie()}" class="text-white"></td>
+                <td th:text="${partie.getHeurePartie()}" class="text-white"></td>
+                <td th:text="${partie.getResultat()}" class="text-white"></td>
             </tr>
             </tbody>
         </table>

@@ -255,6 +255,13 @@ header {
 
 /*CSS_formulaire_partie*/
 
+.form-wrapper-partie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #162938;
+}
 .form-box-partie {
     background-color: white;
     padding: 20px;
