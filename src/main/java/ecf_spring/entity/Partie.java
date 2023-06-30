@@ -34,7 +34,6 @@ public class Partie {
     @Column(name = "heure")
     private String heurePartie;
 
-    @Column(name = "resultat")
-    private Boolean resultat;
-
+    @Column(name = "vainqueur")
+    private Integer vainqueur;
 }

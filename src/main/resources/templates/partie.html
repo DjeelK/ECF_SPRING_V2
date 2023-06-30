@@ -23,7 +23,7 @@
                 <th scope="col" class="text-white">Joueur 2</th>
                 <th scope="col" class="text-white">Date</th>
                 <th scope="col" class="text-white">Heure</th>
-                <th scope="col" class="text-white">Résultat</th>
+                <th scope="col" class="text-white">Vainqueur</th>
             </tr>
             </thead>
             <tbody>
@@ -31,10 +31,18 @@
                 <td th:text="${partie.getId()}" class="text-white"></td>
                 <td th:text="${partie.getTournoi().getTitle()}" class="text-white"></td>
                 <td th:text="${partie.getUser1().getFirstName()}" class="text-white"></td>
-                <td th:text="${partie.getUser2().getLastName()}" class="text-white"></td>
+                <td th:text="${partie.getUser2().getFirstName()}" class="text-white"></td>
                 <td th:text="${partie.getDatePartie()}" class="text-white"></td>
                 <td th:text="${partie.getHeurePartie()}" class="text-white"></td>
-                <td th:text="${partie.getResultat()}" class="text-white"></td>
+                <td>
+                <span th:if="${partie.getVainqueur() == 1}" class="text-white">
+                <span th:text="${partie.getUser1().getLastName()}"></span>
+                </span>
+                    <span th:if="${partie.getVainqueur() == 2}" class="text-white">
+                        <span th:text="${partie.getUser2().getFirstName()}"></span>
+                    </span>
+                    <span th:if="${partie.getVainqueur() == 0}" class="text-white">Match en cours</span>
+                </td>
             </tr>
             </tbody>
         </table>

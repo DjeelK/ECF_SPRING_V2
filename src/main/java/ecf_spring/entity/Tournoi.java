@@ -20,9 +20,5 @@ public class Tournoi {
     private String title;
     private String dateDebut;
     private String dateFin;
-//    @OneToMany(mappedBy = "tournoi",fetch = FetchType.EAGER)
-//    private List <Partie> parties;
-//    @OneToMany(mappedBy = "tournoi", fetch = FetchType.EAGER)
-//    private List<AppUser> appUsers;
 
 }

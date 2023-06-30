@@ -18,7 +18,7 @@ public class PartieService {
     @Autowired
     private LoginService loginService;
 
-    public boolean savePartie(Tournoi tournoi, AppUser user1, AppUser user2, String datePartie, String heurePartie) throws PartieExistException, EmptyFieldsException, NotAdminException, NotSignInException {
+    public boolean savePartie(Tournoi tournoi, AppUser user1, AppUser user2, String datePartie, String heurePartie, Integer vainqueur) throws PartieExistException, EmptyFieldsException, NotAdminException, NotSignInException {
         if (loginService.isLogged()) {
             if (loginService.isAdmin()) {
                 if (tournoi != null && user1 != null && user2 != null) {
@@ -28,6 +28,7 @@ public class PartieService {
                             .user2(user2)
                             .datePartie(datePartie)
                             .heurePartie(heurePartie)
+                            .vainqueur(vainqueur)
                             .build();
                     if (partieRepository.existsByTournoiAndUser1IdAndUser2Id(tournoi, user1.getId(), user2.getId())){
                         throw new PartieExistException();

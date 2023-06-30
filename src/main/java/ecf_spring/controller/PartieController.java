@@ -35,16 +35,15 @@ public class PartieController {
     }
 
     @PostMapping("/add")
-    public String submitFormAddPartie(int tournoiId, int appUser1Id, int appUser2Id, String datePartie, String heurePartie) throws EmptyFieldsException, NotAdminException, NotSignInException, TournoiNotExistException, PartieExistException, UserNotExistException {
+    public String submitFormAddPartie(int tournoiId, int appUser1Id, int appUser2Id, String datePartie, String heurePartie, Integer vainqueur) throws EmptyFieldsException, NotAdminException, NotSignInException, TournoiNotExistException, PartieExistException, UserNotExistException {
         Tournoi tournoi = tournoiService.getTournoiById(tournoiId);
         AppUser appUser1 = appUserService.getAppUserById1(appUser1Id);
         AppUser appUser2 = appUserService.getAppUserById2(appUser2Id);
-        if (partieService.savePartie(tournoi, appUser1, appUser2, datePartie, heurePartie)) {
+        if (partieService.savePartie(tournoi, appUser1, appUser2, datePartie, heurePartie, vainqueur)) {
             return "redirect:/partie";
         }
         return null;
     }
-
 
 
     @GetMapping("/edit/{id}")
