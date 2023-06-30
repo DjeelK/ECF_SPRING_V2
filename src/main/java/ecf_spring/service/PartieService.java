@@ -61,15 +61,19 @@ public class PartieService {
         throw new NotSignInException();
     }
 
-    public boolean updatePartie(int id) throws NotAdminException, NotSignInException{
+    public void updateVainqueur(int id, Integer vainqueur) throws PartieNotExistException, NotAdminException, NotSignInException {
         if (loginService.isLogged()) {
             if (loginService.isAdmin()) {
-                Partie partie = partieRepository.findById(id).get();
+                Partie partie = partieRepository.findById(id)
+                        .orElseThrow(PartieNotExistException::new);
+                partie.setVainqueur(vainqueur);
                 partieRepository.save(partie);
-                return true;
+            } else {
+                throw new NotAdminException();
             }
-            throw new NotAdminException();
+        } else {
+            throw new NotSignInException();
         }
-        throw new NotSignInException();
     }
+
 }

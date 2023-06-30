@@ -1,6 +1,7 @@
 package ecf_spring.controller;
 
 import ecf_spring.entity.AppUser;
+import ecf_spring.entity.Partie;
 import ecf_spring.entity.Tournoi;
 import ecf_spring.exception.*;
 import ecf_spring.service.AppUserService;
@@ -45,21 +46,31 @@ public class PartieController {
         return null;
     }
 
-
     @GetMapping("/edit/{id}")
-    public ModelAndView formEditPartie(@PathVariable int id) throws NotSignInException, PartieNotExistException {
-        ModelAndView mv = new ModelAndView("partieform");
-        mv.addObject("partie", partieService.getPartieById(id));
+    public ModelAndView formEditPartie(@PathVariable int id) throws PartieNotExistException, NotSignInException {
+        ModelAndView mv = new ModelAndView("editpartieform");
+        Partie partie = partieService.getPartieById(id);
+        mv.addObject("partie", partie);
+        mv.addObject("tournoi", partie.getTournoi());
+        mv.addObject("user1", partie.getUser1());
+        mv.addObject("user2", partie.getUser2());
+        mv.addObject("vainqueur", partie.getVainqueur());
         return mv;
     }
-
     @PostMapping("/update/{id}")
-    public String submitFormUpdatePartie(@PathVariable int id) throws NotAdminException, NotSignInException {
-        if (partieService.updatePartie(id)) {
+    public String submitFormUpdatePartie(@ModelAttribute("partie") Partie partie, @RequestParam("vainqueur") Integer vainqueur) {
+        try {
+            partie.setVainqueur(vainqueur);
+            partieService.updateVainqueur(partie.getId(), partie.getVainqueur());
             return "redirect:/partie";
+        } catch (PartieNotExistException e) {
+
+        } catch (NotSignInException | NotAdminException e) {
+
         }
         return null;
     }
+
 
     @ExceptionHandler(NotSignInException.class)
     public ModelAndView handleNotSignInException(NotSignInException ex) {
@@ -70,14 +81,14 @@ public class PartieController {
 
     @ExceptionHandler(NotAdminException.class)
     public ModelAndView handleNotAdminException(NotAdminException ex) {
-        ModelAndView mv = new ModelAndView("partieform");
+        ModelAndView mv = new ModelAndView("editpartieform");
         mv.addObject("errorMessage", ex.getMessage());
         return mv;
     }
 
     @ExceptionHandler(PartieNotExistException.class)
     public ModelAndView handlePartieNotExistException(PartieNotExistException ex) {
-        ModelAndView mv = new ModelAndView("partieform");
+        ModelAndView mv = new ModelAndView("editpartieform");
         mv.addObject("errorMessage", ex.getMessage());
         return mv;
     }

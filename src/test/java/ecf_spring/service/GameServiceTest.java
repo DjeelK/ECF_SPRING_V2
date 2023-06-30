@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test;
 public class GameServiceTest {
     private GameService gameService;
     private Player adminPlayer;
-    private Player playerPlayer;
+    private Player regularPlayer;
 
     @BeforeEach
     public void setup() {
         gameService = new GameService();
         adminPlayer = new Player("Admin", true);
-        playerPlayer = new Player("Regular", false);
+        regularPlayer = new Player("Regular", false);
     }
 
     @Test
@@ -26,7 +26,7 @@ public class GameServiceTest {
     @Test
     public void testSetWinner_RegularPlayer_ThrowsException() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            gameService.setWinner(playerPlayer);
+            gameService.setWinner(regularPlayer);
         });
     }
 }
