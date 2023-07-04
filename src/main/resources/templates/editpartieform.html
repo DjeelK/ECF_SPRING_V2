@@ -15,15 +15,15 @@
       <input type="hidden" th:field="*{id}" />
       <div class="form-group-partie">
         <label for="tournoiId">ID du tournoi</label>
-        <input type="text" th:field="*{tournoi.id}" id="tournoiId" class="form-control-partie" required>
+        <input type="text" th:field="*{tournoi.id}" id="tournoiId" class="form-control-partie" required th:value="${partie.tournoi.id}" readonly>
       </div>
       <div class="form-group-partie">
         <label for="appUser1Id">ID du joueur 1</label>
-        <input type="text" th:field="*{user1.id}" id="appUser1Id" class="form-control-partie" required>
+        <input type="text" th:field="*{user1.id}" id="appUser1Id" class="form-control-partie" required th:value="${partie.user1.id}" readonly>
       </div>
       <div class="form-group-partie">
         <label for="appUser2Id">ID du joueur 2</label>
-        <input type="text" th:field="*{user2.id}" id="appUser2Id" class="form-control-partie" required>
+        <input type="text" th:field="*{user2.id}" id="appUser2Id" class="form-control-partie" required th:value="${partie.user2.id}" readonly>
       </div>
       <div class="form-group-partie">
         <label for="vainqueur">Vainqueur</label>
@@ -38,4 +38,3 @@
 </main>
 </body>
 </html>
-

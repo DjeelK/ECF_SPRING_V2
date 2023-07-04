@@ -43,8 +43,8 @@
                         <span th:text="${partie.getUser2().getFirstName()}"></span>
                     </span>
                     <span th:if="${partie.getVainqueur() == 0}" class="text-white">Match en cours</span>
-                        <span th:if="${partie.getVainqueur() != 0}" class="text-white">
-                         <a th:href="@{/partie/edit/{id}(id=${partie.getId()})}" class="btn btn-primary col-2 ms-2">
+                    <span th:if="${partie.getVainqueur() != 0}" class="text-white">
+                         <a th:href="@{/partie/edit/{id}(id=${partie.getId()})}" class="btn btn-primary col-2 ms-2 float-end">
                         <i class="bi bi-pencil-fill"></i>
                         </a>
                     </span>
@@ -52,8 +52,10 @@
             </tr>
             </tbody>
         </table>
+        <div class="text-end">
+            <a href="/partie/add" class="btn btn-primary">Ajouter une partie</a>
+        </div>
     </div>
-    <a href="/partie/add" class="btn btn-primary">Ajouter une partie</a>
 </main>
 </body>
 </html>

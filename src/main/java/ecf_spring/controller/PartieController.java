@@ -1,5 +1,6 @@
 package ecf_spring.controller;
 
+import ch.qos.logback.core.model.Model;
 import ecf_spring.entity.AppUser;
 import ecf_spring.entity.Partie;
 import ecf_spring.entity.Tournoi;
@@ -46,6 +47,7 @@ public class PartieController {
         return null;
     }
 
+
     @GetMapping("/edit/{id}")
     public ModelAndView formEditPartie(@PathVariable int id) throws PartieNotExistException, NotSignInException {
         ModelAndView mv = new ModelAndView("editpartieform");
@@ -57,20 +59,6 @@ public class PartieController {
         mv.addObject("vainqueur", partie.getVainqueur());
         return mv;
     }
-    @PostMapping("/update/{id}")
-    public String submitFormUpdatePartie(@ModelAttribute("partie") Partie partie, @RequestParam("vainqueur") Integer vainqueur) {
-        try {
-            partie.setVainqueur(vainqueur);
-            partieService.updateVainqueur(partie.getId(), partie.getVainqueur());
-            return "redirect:/partie";
-        } catch (PartieNotExistException e) {
-
-        } catch (NotSignInException | NotAdminException e) {
-
-        }
-        return null;
-    }
-
 
     @ExceptionHandler(NotSignInException.class)
     public ModelAndView handleNotSignInException(NotSignInException ex) {
